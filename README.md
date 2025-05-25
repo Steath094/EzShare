@@ -10,7 +10,7 @@ This app allows users to join private rooms and instantly share messages — gre
 This project is split into two parts:
 
 - **Backend** – Node.js + TypeScript using `ws` WebSocket library
-- **Frontend** – React + TypeScript using Tailwind CSS (Planned)
+- **Frontend** – React + TypeScript using Tailwind CSS 
 
 ---
 
@@ -31,7 +31,7 @@ This project is split into two parts:
 - TypeScript
 - [`ws`](https://github.com/websockets/ws) – WebSocket server library
 
-### Frontend (Planned)
+### Frontend
 - React
 - TypeScript
 - Tailwind CSS
@@ -63,16 +63,16 @@ The WebSocket server will run at `ws://localhost:3000`.
 
 ---
 
-## 🖥️ Frontend Plan
+## 🖥️ Frontend
 
-The frontend will be built using:
+The frontend is built using:
 
 - ⚛️ **React + TypeScript** for component-based UI
 - 🎨 **Tailwind CSS** for fast styling
 - 🔐 Simple form to join/create a room and select role
 - 💬 Live text input and display synced via WebSocket
 
-The frontend will connect to the backend via WebSocket and support:
+The frontend connects to the backend via WebSocket and support:
 
 - Room join via room code
 - Role selection (reader or writer)
@@ -80,23 +80,15 @@ The frontend will connect to the backend via WebSocket and support:
 
 ---
 
-## 📂 Project Structure (Backend)
 
-```
-src/
-├── server.ts         # Main WebSocket server logic
-
-```
-
----
 
 ## 📌 To-Do
 
 - [x] WebSocket server with room & role management
 - [x] Real-time chat for writers → readers
-- [ ] Build React frontend (room join, messaging UI)
+- [x] Build React frontend (room join, messaging UI)
 - [ ] Add typing indicator / feedback
-- [ ] Add message history (in-memory or optional DB)
+- [ ] Add code formatted text box
 
 ---
 
