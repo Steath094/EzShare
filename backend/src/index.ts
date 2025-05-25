@@ -16,10 +16,24 @@ wss.on("connection",(socket:WebSocket)=>{
     let currentRoom:string;
     let role: ClientRole = 'reader';
     socket.on('message',(message:string)=>{
+        
         const data = JSON.parse(message);
         if (data.type==='join') {
             currentRoom = data.payload.room;
+            console.log(currentRoom);
+            
             role = data.payload.role || 'reader';
+            if (role === 'reader' && !rooms.has(currentRoom)) {
+                socket.send(
+                JSON.stringify({
+                    type: 'error',
+                    payload: {
+                    message: `Room "${currentRoom}" does not exist.`,
+                    },
+                })
+                );
+                return;
+            }
             if (!rooms.has(currentRoom)) {
                 rooms.set(currentRoom,new Set());
             }
@@ -27,6 +41,10 @@ wss.on("connection",(socket:WebSocket)=>{
             rooms.get(currentRoom)?.add({socket,role});
             clientRooms.set(socket, currentRoom);
             console.log(`User joined room: ${currentRoom} as ${role}`);
+            socket.send(JSON.stringify({
+                type: 'joined',
+                payload: { room: currentRoom, role }
+            }));
         }
         else if (data.type==='chat') {
             const room = clientRooms.get(socket);
